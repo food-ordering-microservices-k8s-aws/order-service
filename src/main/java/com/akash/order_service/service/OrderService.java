@@ -32,7 +32,7 @@ public class OrderService {
     public OrderDTO saveOrderInDb(OrderRequestDTO orderRequestDTO) {
         Long newOrderID = sequenceGenerator.generateNextOrderId();
         UserDTO userDTO = fetchUserDetailsFromUserId(orderRequestDTO.getUserId());
-        Order orderToBeSaved = new Order(newOrderID, orderRequestDTO.getFoodInventoryDTOList(), orderRequestDTO.getRestaurantDTO(), userDTO );
+        Order orderToBeSaved = new Order(newOrderID, orderRequestDTO.getFoodInventoryList(), orderRequestDTO.getRestaurantDTO(), userDTO );
         orderRepository.save(orderToBeSaved);
         return OrderMapper.INSTANCE.mapOrderToOrderDTO(orderToBeSaved);
     }
